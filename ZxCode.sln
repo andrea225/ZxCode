@@ -1,0 +1,67 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modbus", "Modbus", "{87841376-FA26-4CB2-BF18-DABD962AAB62}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ModbusHelperBase", "ModbusHelper\ModbusHelperBase.csproj", "{925CD4F7-5179-4112-A158-A04B6E945BF7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyModbusHelper", "EasyModbusHelper\EasyModbusHelper.csproj", "{7E4A0810-74F5-477C-9D70-E837F49AAC36}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestProject1", "TestProject1\TestProject1.csproj", "{A712722F-9506-4310-85A6-B7554F3EF099}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentModbusHelper", "FluentModbusHelper\FluentModbusHelper.csproj", "{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DxfReader", "DxfReader", "{680B384E-3115-4331-B075-A1459B844025}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZxDxf", "DxfReader\ZxDxf.csproj", "{719DF00E-95E8-4847-B97D-10BD2911DC64}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DxfReaderTest", "DxfReaderTest\DxfReaderTest.csproj", "{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{925CD4F7-5179-4112-A158-A04B6E945BF7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{925CD4F7-5179-4112-A158-A04B6E945BF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{925CD4F7-5179-4112-A158-A04B6E945BF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{925CD4F7-5179-4112-A158-A04B6E945BF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E4A0810-74F5-477C-9D70-E837F49AAC36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E4A0810-74F5-477C-9D70-E837F49AAC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E4A0810-74F5-477C-9D70-E837F49AAC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E4A0810-74F5-477C-9D70-E837F49AAC36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A712722F-9506-4310-85A6-B7554F3EF099}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A712722F-9506-4310-85A6-B7554F3EF099}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A712722F-9506-4310-85A6-B7554F3EF099}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A712722F-9506-4310-85A6-B7554F3EF099}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{719DF00E-95E8-4847-B97D-10BD2911DC64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{719DF00E-95E8-4847-B97D-10BD2911DC64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{719DF00E-95E8-4847-B97D-10BD2911DC64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{719DF00E-95E8-4847-B97D-10BD2911DC64}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{925CD4F7-5179-4112-A158-A04B6E945BF7} = {87841376-FA26-4CB2-BF18-DABD962AAB62}
+		{7E4A0810-74F5-477C-9D70-E837F49AAC36} = {87841376-FA26-4CB2-BF18-DABD962AAB62}
+		{A712722F-9506-4310-85A6-B7554F3EF099} = {87841376-FA26-4CB2-BF18-DABD962AAB62}
+		{6F00A6CA-4C9D-4396-8A57-DD6269BFE5C7} = {87841376-FA26-4CB2-BF18-DABD962AAB62}
+		{719DF00E-95E8-4847-B97D-10BD2911DC64} = {680B384E-3115-4331-B075-A1459B844025}
+		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D} = {680B384E-3115-4331-B075-A1459B844025}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2EDB9CE0-5965-438D-95B4-D8C82D79AA3D}
+	EndGlobalSection
+EndGlobal
