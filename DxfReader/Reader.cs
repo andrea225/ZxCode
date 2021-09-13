@@ -5,33 +5,22 @@ using System.IO;
 
 namespace ZxDxf
 {
-    internal class Reader : IEnumerator<KeyValuePair<int,string>>
+    internal class Reader 
     {
         private readonly StreamReader _sr;
+        private int num;
 
         public Reader(string filePath)
         {
             _sr = new StreamReader(filePath);
         }
-
-        public Pair Next()
-        {
-            var pair = new Pair
-            {
-                Code = Convert.ToInt32(_sr.ReadLine()),
-                Value = _sr.ReadLine()
-            };
-
-            return pair;
-        }
-
-
+        
         public void Dispose()
         {
             _sr?.Dispose();
         }
 
-        public bool MoveNext()
+        public bool Next()
         {
             if (Current.Value == "EOF" || _sr.EndOfStream)
             {
@@ -44,16 +33,11 @@ namespace ZxDxf
                  _sr.ReadLine()
             );
 
+            num += 2;
+
             return true;
         }
-
-        public void Reset()
-        {
-            throw new NotImplementedException();
-        }
-
-        public KeyValuePair<int, string> Current { get; private set; }
-
-        object IEnumerator.Current => Current;
+        
+        public KeyValuePair<int, string> Current { get; private set; }        
     }
 }

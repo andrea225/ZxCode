@@ -6,6 +6,6 @@ namespace ZxDxf.Entities
     {
         public double Thickness { get; set; }
         public bool IsClosed { get; set; }
-        public List<Vertex> Vertices { get; set; }
+        public List<Vertex> Vertices { get; set; } = new();
     }
 }

@@ -269,7 +269,7 @@ namespace ZxDxf
         private const int indexByBlock = 0;
 
         public int Index { get; set; }
-
+        
         public AciColor(int index)
         {
             if (index < 0 || index > 256)
@@ -279,6 +279,8 @@ namespace ZxDxf
 
             Index = index;
         }
+
+        public static AciColor ByLayer => new(256);
 
         public bool IsByLayer => Index == indexByLayer;
 

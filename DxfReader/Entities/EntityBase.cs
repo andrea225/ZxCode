@@ -6,6 +6,6 @@ namespace ZxDxf.Entities
     {
         public Layer Layer { get; set; }
         public LineWeight LineWeight { get; set; }
-        public AciColor AciColor { get; set; }
+        public AciColor AciColor { get; set; } = AciColor.ByLayer;
     }
 }

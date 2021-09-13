@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 
 using ZxDxf.Entities;
 using ZxDxf.Tables;
 
 namespace ZxDxf
 {
-    public class DxfDocument
+    public sealed class DxfDocument
     {
         public List<Layer> Layers { get; set; }
         public List<Line> Lines { get; set; }
@@ -31,6 +32,8 @@ namespace ZxDxf
                 return;
             }
 
+            Clear();
+
             _reader = new Reader(filePath);
             try
             {
@@ -42,9 +45,17 @@ namespace ZxDxf
             }
         }
 
+        private void Clear()
+        {
+            Layers.Clear();
+            Lines.Clear();
+            LwPolylines.Clear();
+            Points.Clear();
+        }
+
         private void Read()
         {
-            while (_reader.MoveNext())
+            while (_reader.Next())
             {
                 var current = _reader.Current;
 
@@ -64,7 +75,7 @@ namespace ZxDxf
 
         private void ReadTables()
         {
-            while (_reader.MoveNext())
+            while (_reader.Next())
             {
                 var current = _reader.Current;
                 switch (current.Value)
@@ -80,7 +91,7 @@ namespace ZxDxf
 
         private void ReadLayers()
         {
-            _reader.MoveNext();
+            _reader.Next();
 
             while (true)
             {
@@ -94,41 +105,41 @@ namespace ZxDxf
                     case "ENDTAB":
                         return;
                     default:
-                        _reader.MoveNext();
+                        _reader.Next();
                         break;
                 }
 
             }
-
-
-            //_reader.MoveNext();
-            //while (_reader.Current.Value!="LAYER")
-            //{
-            //    _reader.MoveNext();
-            //}
-
-            //while (_reader.Current.Value == "LAYER")
-            //{
-            //    ReadLayer();
-            //}
-            
         }
 
         private void ReadLayer()
         {
-            while (_reader.MoveNext())
+            var layer = new Layer();
+
+            while (_reader.Next())
             {
-                switch (_reader.Current.Key)
+                var current = _reader.Current;
+                switch (current.Key)
                 {
                     case 0:
+                        Layers.Add(layer);
                         return;
+                    case 2:
+                        layer.Name = current.Value;
+                        break;
+                    case 62:
+                        layer.AciColor = new AciColor(Math.Abs(Convert.ToInt32(current.Value)));
+                        break;
+                    case 370:
+                        layer.LineWeight = (LineWeight)Convert.ToInt32(current.Value);
+                        break;
                 }
             }
         }
 
         private void ReadEntities()
         {
-            while (true) 
+            while (true)
             {
                 var current = _reader.Current;
 
@@ -137,36 +148,135 @@ namespace ZxDxf
                     case "LWPOLYLINE":
                         ReadLwPolyline();
                         break;
+                    case "LINE":
+                        ReadLine();
+                        break;
+                    case "POINT":
+                        ReadPoint();
+                        break;
                     case "ENDSEC":
                         return;
                     default:
-                        _reader.MoveNext();
+                        _reader.Next();
                         break;
                 }
+            }
+        }
 
-            } 
+        private void ReadCommonEntityProperty(KeyValuePair<int, string> current, EntityBase entity)
+        {
+            switch (current.Key)
+            {
+                case 8:
+                    entity.Layer = Layers.Single(x => x.Name == current.Value);
+                    break;
+                case 62:
+                    entity.AciColor = new AciColor(Convert.ToInt32(current.Value));
+                    break;
+                case 370:
+                    entity.LineWeight = (LineWeight)Convert.ToInt32(current.Value);
+                    break;
+            }
         }
 
         private void ReadLine()
         {
-            while (_reader.MoveNext())
+            var line = new Line();
+
+            while (_reader.Next())
             {
-                switch (_reader.Current.Key)
+                var current = _reader.Current;
+
+                switch (current.Key)
                 {
                     case 0:
+                        Lines.Add(line);
                         return;
+                    case 10:
+                        line.StartPoint.X = Convert.ToDouble(current.Value);
+                        break;
+                    case 20:
+                        line.StartPoint.Y = Convert.ToDouble(current.Value);
+                        break;
+                    case 11:
+                        line.EndPoint.X = Convert.ToDouble(current.Value);
+                        break;
+                    case 21:
+                        line.EndPoint.Y = Convert.ToDouble(current.Value);
+                        break;
+                    case 39:
+                        line.Thickness = Convert.ToDouble(current.Value);
+                        break;
+                    default:
+                        ReadCommonEntityProperty(current, line);
+                        break;
                 }
             }
         }
 
         private void ReadLwPolyline()
         {
-            while (_reader.MoveNext())
+            var lwPolyline = new LwPolyline();
+            var vertex = new Vertex();
+
+            while (_reader.Next())
             {
-                switch (_reader.Current.Key)
+                var current = _reader.Current;
+
+                switch (current.Key)
                 {
                     case 0:
+                        LwPolylines.Add(lwPolyline);
                         return;
+                    case 10:
+                        vertex = new Vertex { X = Convert.ToDouble(current.Value) };
+                        break;
+                    case 20:
+                        vertex.Y = Convert.ToDouble(current.Value);
+                        lwPolyline.Vertices.Add(vertex);
+                        break;
+                    case 39:
+                        lwPolyline.Thickness = Convert.ToDouble(current.Value);
+                        break;
+                    case 70:
+                        lwPolyline.IsClosed = Convert.ToInt32(current.Value) == 1;
+                        break;
+                    default:
+                        ReadCommonEntityProperty(current, lwPolyline);
+                        break;
+                }
+            }
+        }
+
+        private void ReadPoint()
+        {
+            var point = new Point();
+
+            while (_reader.Next())
+            {
+                var current = _reader.Current;
+
+                switch (current.Key)
+                {
+                    case 0:
+                        Points.Add(point);
+                        return;
+                    case 10:
+                        point.Vertex = new Vertex
+                        {
+                            X = Convert.ToDouble(current.Value)
+                        };
+
+                        break;
+                    case 20:
+                        point.Vertex.Y = Convert.ToDouble(current.Value);
+                        break;
+                    case 39:
+                        point.Thickness = Convert.ToDouble(current.Value);
+                        break;
+                    default:
+                        ReadCommonEntityProperty(current, point);
+                        break;
                 }
             }
         }
