@@ -1,4 +1,9 @@
-﻿using System;
+﻿/********************************************************************
+ * * 作者： David Huang    QQ：297032681
+ * * 创建时间：2021-09-14
+********************************************************************/
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -193,13 +198,21 @@ namespace ZxDxf
                         Lines.Add(line);
                         return;
                     case 10:
-                        line.StartPoint.X = Convert.ToDouble(current.Value);
+                        line.StartPoint = new Vertex
+                        {
+                            X = Convert.ToDouble(current.Value)
+                        };
+
                         break;
                     case 20:
                         line.StartPoint.Y = Convert.ToDouble(current.Value);
                         break;
                     case 11:
-                        line.EndPoint.X = Convert.ToDouble(current.Value);
+                        line.EndPoint = new Vertex
+                        {
+                            X = Convert.ToDouble(current.Value)
+                        };
+
                         break;
                     case 21:
                         line.EndPoint.Y = Convert.ToDouble(current.Value);

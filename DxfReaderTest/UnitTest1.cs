@@ -43,7 +43,7 @@ namespace DxfReaderTest
         public void TestRead()
         {
             var doc = new DxfDocument();
-            doc.Load("E:\\work\\IPC\\开口网双线\\Doc\\章丘书苑上、下弯钩.dxf");
+            doc.Load("E:\\work\\IPC\\开口网双线\\Doc\\对比AutoCAD 中望CAD\\章丘书苑上、下弯钩 zw.dxf");
         }
     }
 }

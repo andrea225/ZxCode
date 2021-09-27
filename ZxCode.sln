@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZxDxf", "DxfReader\ZxDxf.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DxfReaderTest", "DxfReaderTest\DxfReaderTest.csproj", "{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyModbusHelper", "EasyModbusHelper\EasyModbusHelper.csproj", "{13770614-151A-44FF-8BD0-9D25697E8441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyModbusHelperTest", "EasyModbusHelperTest\EasyModbusHelperTest.csproj", "{48585095-CDBE-4F59-B15A-655511E57751}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,14 @@ Global
 		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5CDACB6-F62B-4B5C-861E-0D0B68F2C64D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13770614-151A-44FF-8BD0-9D25697E8441}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13770614-151A-44FF-8BD0-9D25697E8441}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13770614-151A-44FF-8BD0-9D25697E8441}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13770614-151A-44FF-8BD0-9D25697E8441}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48585095-CDBE-4F59-B15A-655511E57751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48585095-CDBE-4F59-B15A-655511E57751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48585095-CDBE-4F59-B15A-655511E57751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48585095-CDBE-4F59-B15A-655511E57751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
