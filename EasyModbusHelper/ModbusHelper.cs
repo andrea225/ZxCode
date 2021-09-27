@@ -311,7 +311,7 @@ namespace EasyModbusHelper
             var registers = ReadRegisters(startAddress, l);
             var value = ModbusClient.ConvertRegistersToString(registers, 0, l * 2);
 
-            if (length % 2 != 0 && value.EndsWith("\0"))
+            if (length % 2 != 0 )
             {
                 value = value.Remove(value.Length - 1);
             }

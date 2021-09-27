@@ -60,7 +60,7 @@ namespace EasyModbusHelperTest
             var modbusHelper = new ModbusHelper();
             modbusHelper.Connect("127.0.0.1");
 
-            var s = "abcd";
+            var s = "abc9d6mn";
 
             modbusHelper.Write(0, s);
             var r = modbusHelper.ReadString(0, s.Length);
